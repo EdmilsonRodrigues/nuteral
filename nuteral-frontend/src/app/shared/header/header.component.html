@@ -1,0 +1,21 @@
+<nav class="bg-white shadow-lg">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="flex-shrink-0 flex items-center">
+          <a [routerLink]="['/']" class="text-2xl font-bold text-primary">Nuteral</a>
+        </div>
+        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <ng-container *ngFor="let item of navItems">
+            <a [routerLink]="[item.path]" 
+               routerLinkActive="text-primary border-primary"
+               [routerLinkActiveOptions]="{exact: item.exact}"
+               class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-900 hover:text-primary hover:border-primary transition-colors duration-200">
+              {{item.label}}
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
