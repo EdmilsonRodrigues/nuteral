@@ -3,17 +3,18 @@
     <div class="flex justify-between h-16">
       <div class="flex">
         <div class="flex-shrink-0 flex items-center">
+          <!-- <img class="block h-8 w-auto" src="../../../assets/nuteral-logo.jpeg" alt="Nuteral Logo"> -->
           <a [routerLink]="['/']" class="text-2xl font-bold text-primary">Nuteral</a>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-          <ng-container *ngFor="let item of navItems">
+          @for (item of navItems; track $index) {
             <a [routerLink]="[item.path]" 
                routerLinkActive="text-primary border-primary"
                [routerLinkActiveOptions]="{exact: item.exact}"
                class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-900 hover:text-primary hover:border-primary transition-colors duration-200">
               {{item.label}}
-            </a>
-          </ng-container>
+            </a>  
+          }
         </div>
       </div>
     </div>
