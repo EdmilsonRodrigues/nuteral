@@ -29,40 +29,46 @@ export class AdminLoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getHandshakeToken();
-  }
-
-  private getHandshakeToken() {
-    this.authService.getHandshakeToken().subscribe({
-      next: (response) => {
-        if (response.token) {
-          this.handshakeToken = response.token;
-        }
-      },
-      error: (error) => {
-        this.error = 'Erro ao iniciar autenticação. Tente novamente.';
-      }
-    });
   }
 
   onSubmit() {
-    if (this.loginForm.valid && this.handshakeToken) {
-      const credentials = {
-        username: this.loginForm.get('username')?.value,
-        password: this.loginForm.get('password')?.value
-      };
-
-      const encryptedCredentials = this.encryptionService.encryptCredentials(
-        credentials,
-        this.handshakeToken
-      );
-
-      this.authService.login(encryptedCredentials).subscribe({
-        error: (error) => {
-          this.error = 'Credenciais inválidas';
-          this.getHandshakeToken(); // Get new token after failed attempt
+    if (this.loginForm.valid) {
+      // Get handshake token first
+      this.authService.getHandshake().subscribe({
+        next: (response: { token: string }) => {
+          this.handshakeToken = response.token;
+          this.encryptAndLogin();
+        },
+        error: (error: any) => {
+          this.error = 'Failed to get handshake token';
+          console.error('Handshake error:', error);
         }
       });
     }
+  }
+
+  private encryptAndLogin() {
+    const credentials = {
+      username: this.loginForm.get('username')?.value,
+      password: this.loginForm.get('password')?.value
+    };
+
+    // Encrypt credentials using handshake token
+    const encryptedCredentials = this.encryptionService.encryptCredentials(credentials, this.handshakeToken);
+
+    // Login with encrypted credentials
+    this.authService.login({ username: credentials.username, password: encryptedCredentials }).subscribe({
+      error: (error) => {
+        this.error = 'Credenciais inválidas';
+        this.authService.getHandshake().subscribe({
+          next: (response) => {
+            this.handshakeToken = response.token;
+          },
+          error: (error) => {
+            this.error = 'Erro ao iniciar autenticação. Tente novamente.';
+          }
+        });
+      }
+    });
   }
 }
