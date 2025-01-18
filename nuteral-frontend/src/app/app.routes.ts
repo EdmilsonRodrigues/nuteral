@@ -7,6 +7,10 @@ import { NewsletterComponent } from './pages/newsletter/newsletter.component';
 import { CareersComponent } from './pages/careers/careers.component';
 
 export const routes: Routes = [
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'products', component: ProductsComponent },

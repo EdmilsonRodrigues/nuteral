@@ -1,0 +1,43 @@
+<div class="min-h-screen bg-primary-50">
+  <!-- Navigation -->
+  <nav class="bg-primary-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <span class="text-white font-display text-xl">Nuteral Admin</span>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a routerLink="/admin/products" routerLinkActive="bg-primary-800" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-800">
+                Produtos
+              </a>
+              <a routerLink="/admin/newsletters" routerLinkActive="bg-primary-800" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-800">
+                Newsletters
+              </a>
+              <a routerLink="/admin/talent-bank" routerLinkActive="bg-primary-800" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-800">
+                Banco de Talentos
+              </a>
+              <a routerLink="/admin/careers" routerLinkActive="bg-primary-800" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-800">
+                Carreiras
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="onLogout()"
+            class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-primary-800"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <router-outlet></router-outlet>
+  </main>
+</div>

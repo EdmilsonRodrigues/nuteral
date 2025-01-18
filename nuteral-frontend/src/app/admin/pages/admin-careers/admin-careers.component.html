@@ -1,0 +1,116 @@
+<div class="p-6">
+  <div class="mb-8">
+    <h2 class="text-2xl font-display mb-6">{{ editingJob ? 'Editar Vaga' : 'Nova Vaga' }}</h2>
+    
+    <form [formGroup]="jobForm" (ngSubmit)="onSubmit()" class="space-y-4 max-w-2xl">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Título</label>
+        <input type="text" formControlName="title"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Departamento</label>
+        <input type="text" formControlName="department"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Localização</label>
+        <input type="text" formControlName="location"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Tipo</label>
+        <select formControlName="type"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+          <option value="">Selecione um tipo</option>
+          <option value="full-time">Tempo Integral</option>
+          <option value="part-time">Meio Período</option>
+          <option value="temporary">Temporário</option>
+          <option value="internship">Estágio</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Descrição</label>
+        <textarea formControlName="description" rows="4"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Requisitos (um por linha)</label>
+        <textarea formControlName="requirements" rows="4"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Benefícios (um por linha)</label>
+        <textarea formControlName="benefits" rows="4"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"></textarea>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" formControlName="isActive"
+          class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+        <label class="ml-2 block text-sm text-gray-700">Ativa</label>
+      </div>
+
+      <div class="flex gap-4">
+        <button type="submit"
+          class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+          {{ editingJob ? 'Atualizar' : 'Criar' }}
+        </button>
+        @if (editingJob) {
+          <button type="button" (click)="cancelEdit()"
+            class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+            Cancelar
+          </button>
+        }
+      </div>
+    </form>
+  </div>
+
+  <div class="mt-8">
+    <h3 class="text-xl font-display mb-4">Vagas</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Departamento</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Localização</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          @for (job of jobs; track job.id) {
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ job.title }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ job.department }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ job.location }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span
+                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                  [class.bg-green-100]="job.isActive"
+                  [class.text-green-800]="job.isActive"
+                  [class.bg-red-100]="!job.isActive"
+                  [class.text-red-800]="!job.isActive">
+                  {{ job.isActive ? 'Ativa' : 'Inativa' }}
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button (click)="editJob(job)"
+                  class="text-primary-600 hover:text-primary-900 mr-4">Editar</button>
+                <button (click)="deleteJob(job.id)"
+                  class="text-red-600 hover:text-red-900">Excluir</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

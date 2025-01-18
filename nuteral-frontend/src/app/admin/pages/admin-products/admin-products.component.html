@@ -1,0 +1,95 @@
+<div class="p-6">
+  <div class="mb-8">
+    <h2 class="text-2xl font-display mb-6">{{ editingProduct ? 'Editar Produto' : 'Novo Produto' }}</h2>
+    
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="space-y-4 max-w-2xl">
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Nome</label>
+        <input type="text" formControlName="name"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Categoria</label>
+        <select formControlName="category"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500">
+          <option value="">Selecione uma categoria</option>
+          <option value="nutricao-enteral">Nutrição Enteral</option>
+          <option value="suplementos">Suplementos</option>
+          <option value="modulos">Módulos Nutricionais</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Descrição</label>
+        <textarea formControlName="description" rows="3"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Características (uma por linha)</label>
+        <textarea formControlName="features" rows="4"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"></textarea>
+      </div>
+
+      <div class="flex items-center">
+        <input type="checkbox" formControlName="isActive"
+          class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500">
+        <label class="ml-2 block text-sm text-gray-700">Ativo</label>
+      </div>
+
+      <div class="flex gap-4">
+        <button type="submit"
+          class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-900 hover:bg-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+          {{ editingProduct ? 'Atualizar' : 'Criar' }}
+        </button>
+        @if (editingProduct) {
+          <button type="button" (click)="cancelEdit()"
+            class="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+            Cancelar
+          </button>
+        }
+      </div>
+    </form>
+  </div>
+
+  <div class="mt-8">
+    <h3 class="text-xl font-display mb-4">Produtos</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          @for (product of products; track product.id) {
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">{{ product.name }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">{{ product.category }}</td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <span
+                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                  [class.bg-green-100]="product.isActive"
+                  [class.text-green-800]="product.isActive"
+                  [class.bg-red-100]="!product.isActive"
+                  [class.text-red-800]="!product.isActive">
+                  {{ product.isActive ? 'Ativo' : 'Inativo' }}
+                </span>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <button (click)="editProduct(product)"
+                  class="text-primary-600 hover:text-primary-900 mr-4">Editar</button>
+                <button (click)="deleteProduct(product.id)"
+                  class="text-red-600 hover:text-red-900">Excluir</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
