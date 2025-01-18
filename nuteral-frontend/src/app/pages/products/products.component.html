@@ -1,48 +1,192 @@
 <!-- Hero Section -->
-<section class="bg-primary-900 text-white py-16">
+<section class="bg-primary-900 text-white py-24">
     <div class="container mx-auto px-4">
-        <h1 class="text-5xl font-display mb-6 text-center">Our Products</h1>
-        <p class="text-xl mb-8 font-light text-center">Comprehensive nutrition solutions for every patient's needs</p>
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl font-display mb-6">Nossos Produtos</h1>
+            <p class="text-xl mb-8 font-light">
+                Soluções nutricionais completas e especializadas para atender às necessidades específicas de cada paciente
+            </p>
+        </div>
     </div>
 </section>
 
-<!-- Product Cards -->
-@for (category of categories; track $index) {
-    <section class="{{ category.backgroundClass }} py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-display mb-8 text-center">{{ category.title }}</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @for (product of category.products; track $index) {
-                    <div class="{{ category.cardBackgroundClass }} rounded-lg shadow-lg p-6">
-                        <div class="h-48 bg-white rounded flex items-center justify-center mb-6">
-                            <img [src]="product.imageUrl" [alt]="product.name" class="w-full h-full object-cover">
+<!-- Product Categories -->
+<section class="bg-primary-200 py-20 -mt-1">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Nutrição Enteral -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-display mb-12">Nutrição Enteral</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/enteral-standard.jpg" alt="Fórmula Padrão" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-2xl font-display mb-4">{{ product.name }}</h3>
-                        <p class="font-light">{{ product.description }}</p>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Fórmula Padrão</h3>
+                            <p class="text-gray-600 mb-4">Nutrição completa e balanceada para uso enteral ou oral</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>1.0 - 1.5 kcal/mL</li>
+                                <li>Com ou sem fibras</li>
+                                <li>Normoproteica</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
                     </div>
-                }
-                <div class="{{ category.cardBackgroundClass }} rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all cursor-pointer group">
-                    <div class="h-full flex flex-col items-center justify-center p-6">
-                        <div class="w-16 h-16 rounded-full bg-primary-900 text-white flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                            <span class="text-4xl font-light">+</span>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/enteral-specialized.jpg" alt="Fórmula Especializada" class="w-full h-full object-cover">
                         </div>
-                        <p class="text-lg font-display text-primary-900">Find More Items</p>
-                        <p class="text-sm text-gray-600 mt-2">Explore our complete collection</p>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Fórmula Especializada</h3>
+                            <p class="text-gray-600 mb-4">Desenvolvida para condições clínicas específicas</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Diabetes</li>
+                                <li>Insuficiência Renal</li>
+                                <li>Cicatrização</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/enteral-pediatric.jpg" alt="Fórmula Pediátrica" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Fórmula Pediátrica</h3>
+                            <p class="text-gray-600 mb-4">Nutrição específica para necessidades pediátricas</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>0-12 anos</li>
+                                <li>Com DHA e ARA</li>
+                                <li>Adequada ao desenvolvimento</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suplementos -->
+            <div class="mb-20">
+                <h2 class="text-3xl font-display mb-12">Suplementos</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/supplement-protein.jpg" alt="Suplemento Proteico" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Suplemento Proteico</h3>
+                            <p class="text-gray-600 mb-4">Alto teor de proteínas de alta qualidade</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Whey Protein Isolado</li>
+                                <li>BCAA</li>
+                                <li>Glutamina</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/supplement-vitamin.jpg" alt="Suplemento Vitamínico" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Suplemento Vitamínico</h3>
+                            <p class="text-gray-600 mb-4">Complexo vitamínico completo</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Vitaminas A-Z</li>
+                                <li>Minerais essenciais</li>
+                                <li>Antioxidantes</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/supplement-specialized.jpg" alt="Suplemento Especializado" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Suplemento Especializado</h3>
+                            <p class="text-gray-600 mb-4">Para necessidades específicas</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Imunidade</li>
+                                <li>Saúde Óssea</li>
+                                <li>Energia</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulos -->
+            <div>
+                <h2 class="text-3xl font-display mb-12">Módulos Nutricionais</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/module-protein.jpg" alt="Módulo Proteico" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Módulo Proteico</h3>
+                            <p class="text-gray-600 mb-4">Proteína isolada para complementação</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>100% proteína</li>
+                                <li>Fácil dissolução</li>
+                                <li>Sem sabor</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/module-carb.jpg" alt="Módulo de Carboidrato" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Módulo de Carboidrato</h3>
+                            <p class="text-gray-600 mb-4">Carboidrato em pó para complementação</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Maltodextrina</li>
+                                <li>Rápida absorção</li>
+                                <li>Alta energia</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gray-100">
+                            <img src="assets/products/module-fiber.jpg" alt="Módulo de Fibras" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-display mb-2">Módulo de Fibras</h3>
+                            <p class="text-gray-600 mb-4">Mix de fibras solúveis e insolúveis</p>
+                            <ul class="list-disc list-inside text-gray-600 mb-4">
+                                <li>Prebióticos</li>
+                                <li>Regulação intestinal</li>
+                                <li>Saúde digestiva</li>
+                            </ul>
+                            <button class="text-primary-900 hover:text-primary-700">Ver detalhes →</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-}
+    </div>
+</section>
 
 <!-- Call to Action -->
 <section class="bg-primary-900 text-white py-16 -mt-1">
     <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-display mb-6">Need Help Choosing?</h2>
-        <p class="text-xl mb-8 font-light">Our nutrition experts are here to help you find the perfect solution</p>
+        <h2 class="text-4xl font-display mb-6">Precisa de Informações Específicas?</h2>
+        <p class="text-xl mb-8 font-light max-w-3xl mx-auto">
+            Nossa equipe está pronta para ajudar você a encontrar o produto ideal para suas necessidades
+        </p>
         <div class="flex gap-6 justify-center">
-            <button class="bg-white text-primary-900 px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all">Contact an Expert</button>
-            <button class="border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-primary-900 transition-all">Download Catalog</button>
+            <a routerLink="/contact" class="bg-white text-primary-900 px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all">
+                Falar com Especialista
+            </a>
+            <a href="/assets/catalog.pdf" target="_blank" class="border-2 border-white text-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-primary-900 transition-all">
+                Baixar Catálogo
+            </a>
         </div>
     </div>
 </section>

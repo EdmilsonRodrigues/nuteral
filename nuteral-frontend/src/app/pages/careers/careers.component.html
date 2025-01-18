@@ -1,1 +1,97 @@
-<p>careers works!</p>
+<!-- Hero Section -->
+<section class="bg-primary-900 text-white py-24">
+    <div class="container mx-auto px-4">   
+        <h1 class="text-5xl font-display mb-6 text-center">Carreiras</h1>
+        <p class="text-xl mb-8 font-light text-center max-w-3xl mx-auto">
+            Junte-se à nossa missão de transformar vidas através da nutrição
+        </p>
+    </div>
+</section>
+
+<!-- Job Listings Section -->
+<section class="bg-primary-200 py-20 -mt-1">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Current Openings -->
+                <div class="lg:col-span-2 space-y-6">
+                    <h2 class="text-3xl font-display mb-8">Vagas Abertas</h2>
+                    @for (job of jobListings; track job.id) {
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-display mb-2">{{ job.title }}</h3>
+                                        <div class="space-y-1">
+                                            <p class="text-gray-600 flex items-center">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                                </svg>
+                                                {{ job.location }}
+                                            </p>
+                                            <p class="text-gray-600 flex items-center">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                                </svg>
+                                                {{ job.department }}
+                                            </p>
+                                            <p class="text-gray-600 flex items-center">
+                                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                {{ job.type }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">Publicado em {{ formatDate(job.postedDate) }}</span>
+                                </div>
+                                <p class="text-gray-700 mb-6">{{ job.description }}</p>
+                                <div class="space-y-4">
+                                    <div>
+                                        <h4 class="font-display text-lg mb-2">Requisitos</h4>
+                                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                            @for (req of job.requirements; track req.description) {
+                                                <li>{{ req.description }}</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-display text-lg mb-2">Benefícios</h4>
+                                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                                            @for (benefit of job.benefits; track benefit.description) {
+                                                <li>{{ benefit.description }}</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <button class="bg-primary-900 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-800 transition-colors">
+                                        Candidatar-se
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Talent Bank -->
+                <div class="bg-white rounded-lg shadow-lg p-8 h-fit">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-display mb-4">Banco de Talentos</h2>
+                        <p class="text-gray-600 mb-6">
+                            Não encontrou a vaga ideal? Cadastre-se em nosso banco de talentos e seja considerado para futuras oportunidades.
+                        </p>
+                        <button routerLink="/careers/talent-bank" class="w-full border-2 border-primary-900 text-primary-900 px-6 py-3 rounded-lg font-medium hover:bg-primary-900 hover:text-white transition-colors">
+                            Cadastrar Currículo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -10,6 +10,7 @@ module.exports = {
           DEFAULT: '#1e3a8a', // deep blue
           '50': '#eff6ff',
           '100': '#dbeafe',
+          '150': '#c7d2fe',
           '200': '#bfdbfe',
           '300': '#93c5fd',
           '400': '#60a5fa',
